@@ -16,6 +16,7 @@ const plugins = [
 
 if (inProductionMode) {
     plugins.push(
+        // TODO: amend the list of env vars
         new webpack.EnvironmentPlugin(['NODE_ENV', 'GOOGLE_URL_SHORTENER_API', 'API_KEY', 'APP_URL']),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'manifest']
@@ -42,7 +43,7 @@ if (inProductionMode) {
 module.exports = {
     entry: inProductionMode ? {
         bundle: './src/index.js',
-        vendor: ['react', 'react-dom', 'react-redux', 'redux']
+        vendor: ['react', 'react-dom']
     } : [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
@@ -67,6 +68,7 @@ module.exports = {
 
             {
                 test: /\.scss$/,
+                // No Hot Module Replacement with ExtractTextPlugin: https://github.com/webpack-contrib/extract-text-webpack-plugin
                 use: inProductionMode ? ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader']
