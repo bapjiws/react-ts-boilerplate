@@ -8,6 +8,7 @@ const inProductionMode = NODE_ENV === 'production';
 
 const plugins = [
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
         template: path.join(__dirname, '/src/index.html')
     }),
