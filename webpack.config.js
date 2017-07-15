@@ -83,7 +83,7 @@ module.exports = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'assets/fonts/[name].[ext]'
+                        name: '[path][name].[ext]'
                     }
                 }
             },
@@ -93,7 +93,7 @@ module.exports = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'assets/images/[name].[ext]'
+                        name: '[path][name].[ext]'
                     }
                 }
             }
