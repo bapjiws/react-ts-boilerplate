@@ -8,7 +8,3 @@ export const importAllAsObject = (r: __WebpackModuleApi.RequireContext): {[key: 
     });
     return imports;
 };
-
-// review: {[key: string]: string} // TODO: starRating field should ideally be a number
-export const generatePortraitKey = (review: {[key: string]: string}, ext: string): string =>
-    `${review.fullName.split(' ').map(x => x.toLowerCase()).join('-')}.${ext}`;
