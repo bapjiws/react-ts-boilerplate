@@ -84,7 +84,7 @@ module.exports = {
                     use: ['css-loader', {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: (loader) => [
+                            plugins: (loader) => [ // eslint-disable-line no-unused-vars
                                 require('autoprefixer')() // eslint-disable-line global-require
                             ]
                         }
@@ -94,7 +94,7 @@ module.exports = {
                     use: ['css-loader', {
                         loader: 'postcss-loader',
                         options: {
-                            plugins: (loader) => [
+                            plugins: (loader) => [ // eslint-disable-line no-unused-vars
                                 require('autoprefixer')() // eslint-disable-line global-require
                             ]
                         }
