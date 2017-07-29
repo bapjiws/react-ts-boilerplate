@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -23,7 +24,7 @@ if (inProductionMode) {
         })
     )
 } else {
-    const dotEnvVars = require('dotenv').config().parsed; // eslint-disable-line global-require
+    const dotEnvVars = require('dotenv').config().parsed;
     const envVars = Object.keys(dotEnvVars).
     reduce( (acc, key) => {
         acc['process.env'][key] = JSON.stringify(dotEnvVars[key]);
@@ -85,7 +86,7 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: (loader) => [ // eslint-disable-line no-unused-vars
-                                require('autoprefixer')() // eslint-disable-line global-require
+                                require('autoprefixer')()
                             ]
                         }
                     }, 'sass-loader']
@@ -95,7 +96,7 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: (loader) => [ // eslint-disable-line no-unused-vars
-                                require('autoprefixer')() // eslint-disable-line global-require
+                                require('autoprefixer')()
                             ]
                         }
                     }, 'sass-loader'],
