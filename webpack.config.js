@@ -23,7 +23,7 @@ if (inProductionMode) {
         })
     )
 } else {
-    const dotEnvVars = require('dotenv').config().parsed;
+    const dotEnvVars = require('dotenv').config().parsed; // eslint-disable-line global-require
     const envVars = Object.keys(dotEnvVars).
     reduce( (acc, key) => {
         acc['process.env'][key] = JSON.stringify(dotEnvVars[key]);
