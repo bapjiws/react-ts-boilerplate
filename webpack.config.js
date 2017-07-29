@@ -85,7 +85,7 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: (loader) => [
-                                require('autoprefixer')()
+                                require('autoprefixer')() // eslint-disable-line global-require
                             ]
                         }
                     }, 'sass-loader']
@@ -95,7 +95,7 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             plugins: (loader) => [
-                                require('autoprefixer')()
+                                require('autoprefixer')() // eslint-disable-line global-require
                             ]
                         }
                     }, 'sass-loader'],
