@@ -7,32 +7,32 @@ const app = express();
 const inProductionMode = process.env.NODE_ENV === 'production';
 
 if (!inProductionMode) {
-    const webpackConfig = require('./webpack.config');
-    const compiler = require('webpack')(webpackConfig);
+  const webpackConfig = require('./webpack.config');
+  const compiler = require('webpack')(webpackConfig);
 
-    // Webpack Dev Middleware: https://github.com/webpack/webpack-dev-middleware
-    const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, {
-        noInfo: true, publicPath: webpackConfig.output.publicPath
-    });
+  // Webpack Dev Middleware: https://github.com/webpack/webpack-dev-middleware
+  const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath,
+  });
     // Webpack Hot Middleware: https://github.com/glenjamin/webpack-hot-middleware
-    const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
+  const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
 
-    app.use(webpackDevMiddleware);
-    app.use(webpackHotMiddleware);
+  app.use(webpackDevMiddleware);
+  app.use(webpackHotMiddleware);
 
-    app.get('/', (req, res) =>  {
-        res.write(webpackDevMiddleware.fileSystem.readFileSync(path.join(__dirname, './build/index.html')));
-        res.end();
-    });
+  app.get('/', (req, res) => {
+    res.write(webpackDevMiddleware.fileSystem.readFileSync(path.join(__dirname, './build/index.html')));
+    res.end();
+  });
 } else {
-    // https://github.com/expressjs/compression
-    const compression = require('compression');
-    app.use(compression());
-    app.use(express.static(path.join(__dirname, 'build')));
+  // https://github.com/expressjs/compression
+  const compression = require('compression');
+  app.use(compression());
+  app.use(express.static(path.join(__dirname, 'build')));
 }
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => inProductionMode ?
-    console.log(`♫ In production mode. Listening on port ${port} ♫`) :
-    console.log(`♫ In development mode. Listening on port ${port}  ♫`)
+app.listen(port, () => (inProductionMode ?
+  console.log(`♫ In production mode. Listening on port ${port} ♫`) :
+  console.log(`♫ In development mode. Listening on port ${port}  ♫`)),
 );

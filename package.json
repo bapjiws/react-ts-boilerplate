@@ -13,6 +13,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
     "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2",
     "typescript-eslint-parser": "^4.0.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.2",
@@ -52,8 +53,11 @@
     "build": "yarn run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf build",
     "dev": "nodemon server.js",
-    "lint:js": "eslint * --cache",
+    "lint": "eslint * --cache",
     "prod": "NODE_ENV=production node server.js",
     "release-the-kraken": "yarn run build && yarn run prod"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }

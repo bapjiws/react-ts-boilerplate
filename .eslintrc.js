@@ -8,6 +8,8 @@ module.exports = {
     // http://eslint.org/docs/rules/
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     "rules": {
+        "strict": 0,
+
         "react/jsx-filename-extension": ["error", {"extensions": [".jsx", ".tsx"]}],
 
         "import/extensions": ["error", "always", {
