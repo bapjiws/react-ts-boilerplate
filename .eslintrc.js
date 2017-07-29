@@ -15,7 +15,10 @@ module.exports = {
             "jsx": "never",
             "ts": "never",
             "tsx": "never"
-        }]
+        }],
+
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+
     },
 
     "settings": {
