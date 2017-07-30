@@ -1,7 +1,3 @@
-node_modules/*
-build/*
-ts-build/*
-yarn.lock
-tsconfig.json
-package.json
-src/index.html
+node_modules
+build
+ts-build

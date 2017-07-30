@@ -53,11 +53,8 @@
     "build": "yarn run clean && NODE_ENV=production webpack -p",
     "clean": "rimraf build",
     "dev": "nodemon server.js",
-    "lint": "eslint * --cache",
+    "lint": "eslint . --ext .js,.ts,.tsx --cache",
     "prod": "NODE_ENV=production node server.js",
     "release-the-kraken": "yarn run build && yarn run prod"
-  },
-  "pre-commit": [
-    "lint"
-  ]
+  }
 }
