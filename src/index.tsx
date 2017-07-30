@@ -1,3 +1,5 @@
+// React & Redux in TypeScript - Static Typing Guide:
+// https://github.com/piotrwitek/react-redux-typescript-guide
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader'; // Automatically disabled in production.
