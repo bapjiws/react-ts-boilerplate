@@ -32,7 +32,10 @@ if (!inProductionMode) {
 }
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => (inProductionMode ?
-  console.log(`♫ In production mode. Listening on port ${port} ♫`) :
-  console.log(`♫ In development mode. Listening on port ${port}  ♫`)),
-);
+app.listen(port, () => {
+  if (inProductionMode) {
+    console.log(`♫ In production mode. Listening on port ${port} ♫`);
+  } else {
+    console.log(`♫ In development mode. Listening on port ${port} ♫`);
+  }
+});

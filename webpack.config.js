@@ -11,17 +11,17 @@ const plugins = [
   new webpack.NoEmitOnErrorsPlugin(),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new HtmlWebpackPlugin({
-    template: path.join(__dirname, '/src/index.html'),
+    template: path.join(__dirname, '/src/index.html')
   }),
-  new ExtractTextPlugin('main.css'),
+  new ExtractTextPlugin('main.css')
 ];
 
 if (inProductionMode) {
   plugins.push(
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
-    }),
+      names: ['vendor', 'manifest']
+    })
   );
 } else {
   const dotEnvVars = require('dotenv').config().parsed;
@@ -32,28 +32,28 @@ if (inProductionMode) {
     }, {
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV),
-      },
+      }
     });
 
   plugins.push(
     new webpack.DefinePlugin(envVars),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   );
 }
 
 module.exports = {
   entry: inProductionMode ? {
     bundle: './src/index.tsx',
-    vendor: ['react', 'react-dom'],
+    vendor: ['react', 'react-dom']
   } : [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    './src/index.tsx',
+    './src/index.tsx'
   ],
 
   output: {
     path: path.join(__dirname, 'build'),
-    filename: inProductionMode ? '[name].[chunkhash].js' : 'bundle.js',
+    filename: inProductionMode ? '[name].[chunkhash].js' : 'bundle.js'
   },
 
   module: {
@@ -62,7 +62,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         include: [
-          path.join(__dirname, '/src'),
+          path.join(__dirname, '/src')
         ],
         use: [
           'react-hot-loader/webpack',
@@ -71,9 +71,9 @@ module.exports = {
             loader: 'awesome-typescript-loader',
             options: {
               useBabel: true,
-              useCache: true,
+              useCache: true
             },
-          },
+          }
         ],
       },
 

@@ -9,6 +9,7 @@ module.exports = {
     // https://github.com/yannickcr/eslint-plugin-react/tree/master/docs/rules
     "rules": {
         "strict": 0,
+        "comma-dangle": 0,
 
         "react/jsx-filename-extension": ["error", {"extensions": [".jsx", ".tsx"]}],
 
