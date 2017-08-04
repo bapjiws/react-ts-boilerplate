@@ -59,6 +59,7 @@
     "dev": "nodemon server.js",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "eslint server.js webpack.config.js . --ext .ts,.tsx --cache",
+    "lint:fix": "eslint server.js webpack.config.js . --ext .ts,.tsx --cache --fix",
     "precommit": "lint-staged",
     "postcommit": "git reset *",
     "prod": "NODE_ENV=production node server.js",
