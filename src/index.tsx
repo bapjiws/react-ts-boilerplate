@@ -1,3 +1,5 @@
+/* global document */
+
 // React & Redux in TypeScript - Static Typing Guide:
 // https://github.com/piotrwitek/react-redux-typescript-guide
 import React from 'react';
@@ -7,18 +9,20 @@ import { AppContainer } from 'react-hot-loader'; // Automatically disabled in pr
 import App from './components/App';
 
 const render = (Component: any): void => {
-    ReactDOM.render(
-        <AppContainer>
-            <Component />
-        </AppContainer>,
-        document.getElementById('root')
-    )
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('root')
+  );
 };
 
 render(App);
 
 if (module.hot) {
-    module.hot.accept('./components/App', () => { render(App) })
+  module.hot.accept('./components/App', () => {
+    render(App);
+  });
 }
 
 // An alternative setup taken from https://github.com/Glavin001/react-hot-ts:
