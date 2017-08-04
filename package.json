@@ -60,6 +60,7 @@
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "eslint server.js webpack.config.js . --ext .ts,.tsx --cache",
     "precommit": "lint-staged",
+    "postcommit": "git reset *",
     "prod": "NODE_ENV=production node server.js",
     "release-the-kraken": "yarn run build && yarn run prod"
   },
