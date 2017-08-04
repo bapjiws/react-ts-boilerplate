@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 const webpack = require('webpack');
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -25,15 +26,17 @@ if (inProductionMode) {
   );
 } else {
   const dotEnvVars = require('dotenv').config().parsed;
-  const envVars = Object.keys(dotEnvVars)
-    .reduce((acc, key) => {
+  const envVars = Object.keys(dotEnvVars).reduce(
+    (acc, key) => {
       acc['process.env'][key] = JSON.stringify(dotEnvVars[key]);
       return acc;
-    }, {
+    },
+    {
       'process.env': {
-        NODE_ENV: JSON.stringify(NODE_ENV),
+        NODE_ENV: JSON.stringify(NODE_ENV)
       }
-    });
+    }
+  );
 
   plugins.push(
     new webpack.DefinePlugin(envVars),
@@ -42,14 +45,16 @@ if (inProductionMode) {
 }
 
 module.exports = {
-  entry: inProductionMode ? {
-    bundle: './src/index.tsx',
-    vendor: ['react', 'react-dom']
-  } : [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
-    './src/index.tsx'
-  ],
+  entry: inProductionMode
+    ? {
+        bundle: './src/index.tsx',
+        vendor: ['react', 'react-dom']
+      }
+    : [
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client',
+        './src/index.tsx'
+      ],
 
   output: {
     path: path.join(__dirname, 'build'),
@@ -61,9 +66,7 @@ module.exports = {
       // https://github.com/s-panferov/awesome-typescript-loader
       {
         test: /\.tsx?$/,
-        include: [
-          path.join(__dirname, '/src')
-        ],
+        include: [path.join(__dirname, '/src')],
         use: [
           'react-hot-loader/webpack',
           'babel-loader',
@@ -72,35 +75,47 @@ module.exports = {
             options: {
               useBabel: true,
               useCache: true
-            },
+            }
           }
-        ],
+        ]
       },
 
       {
         test: /\.scss$/,
         // No Hot Module Replacement with ExtractTextPlugin: https://github.com/webpack-contrib/extract-text-webpack-plugin
-        use: inProductionMode ? ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', {
-            loader: 'postcss-loader',
-            options: {
-              plugins: loader => [ // eslint-disable-line no-unused-vars
-                require('autoprefixer')(),
-              ],
-            },
-          }, 'sass-loader'],
-        }) : ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', {
-            loader: 'postcss-loader',
-            options: {
-              plugins: loader => [ // eslint-disable-line no-unused-vars
-                require('autoprefixer')(),
-              ],
-            },
-          }, 'sass-loader'],
-        })),
+        use: inProductionMode
+          ? ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                'css-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
+                      require('autoprefixer')()
+                    ]
+                  }
+                },
+                'sass-loader'
+              ]
+            })
+          : ['css-hot-loader'].concat(
+              ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [
+                  'css-loader',
+                  {
+                    loader: 'postcss-loader',
+                    options: {
+                      plugins: loader => [ // eslint-disable-line no-unused-vars, prettier/prettier
+                        require('autoprefixer')()
+                      ]
+                    }
+                  },
+                  'sass-loader'
+                ]
+              })
+            )
       },
 
       {
@@ -108,9 +123,9 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[hash].[ext]',
-          },
-        },
+            name: '[path][name].[hash].[ext]'
+          }
+        }
       },
 
       {
@@ -118,26 +133,26 @@ module.exports = {
         use: {
           loader: 'file-loader',
           options: {
-            name: '[path][name].[hash].[ext]',
-          },
-        },
+            name: '[path][name].[hash].[ext]'
+          }
+        }
       },
 
       // https://github.com/webpack-contrib/source-map-loader
       {
         test: /\.js$/,
         use: ['source-map-loader'],
-        enforce: 'pre',
-      },
-    ],
+        enforce: 'pre'
+      }
+    ]
   },
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    modules: [path.join(__dirname, 'src'), 'node_modules'],
+    modules: [path.join(__dirname, 'src'), 'node_modules']
   },
 
   plugins,
 
-  devtool: inProductionMode ? undefined : 'source-map',
+  devtool: inProductionMode ? undefined : 'source-map'
 };
