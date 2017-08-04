@@ -65,7 +65,7 @@
   },
   "lint-staged": {
     "*.+(js|ts|tsx)": [
-      "eslint",
+      "eslint --fix",
       "git add"
     ]
   }
