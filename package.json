@@ -19,7 +19,7 @@
     "lint-staged": "^4.0.2",
     "nodemon": "^1.11.0",
     "prettier": "^1.5.3",
-    "typescript-eslint-parser": "^4.0.0",
+    "typescript-eslint-parser": "^8.0.0",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.2",
     "webpack-node-externals": "^1.6.0"
@@ -51,7 +51,7 @@
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
-    "typescript": "^2.4.1",
+    "typescript": "^2.5.3",
     "webpack": "^3.2.0"
   },
   "scripts": {
