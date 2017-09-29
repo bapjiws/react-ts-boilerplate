@@ -46,8 +46,17 @@ module.exports = {
     ],
     "plugins": [
         "react",
-        "prettier"
+        "prettier",
+        "typescript"
     ],
+
+    // "overrides": [
+    //     {
+    //         "files": [ "src/components/App.tsx" ],
+    //         "excludedFiles": [ "webpack.config.js" ]
+    //     }
+    // ],
+
     "parser": "typescript-eslint-parser" ,
     "rules": {
         "prettier/prettier":  ["error", {"singleQuote": true}],
